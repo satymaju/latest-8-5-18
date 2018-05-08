@@ -1,0 +1,8 @@
+[?5/?3/?2018 7:08 PM] Sane, Ninad: 
+https://www.guru99.com/xpath-selenium.html 
+http://www.seleniumeasy.com/selenium-tutorials/css-selectors-tutorial-for-selenium-with-examples 
+https://www.softwaretestinghelp.com/css-selector-selenium-locator-selenium-tutorial-6/ 
+https://www.guru99.com/locators-in-selenium-ide.html 
+http://toolsqa.com/selenium-webdriver/choosing-effective-xpath/ 
+http://www.seleniumeasy.com/selenium-tutorials/xpath-tutorial-for-selenium 
+https://www.softwaretestinghelp.com/using-selenium-xpath-and-other-locators-selenium-tutorial-5/ 

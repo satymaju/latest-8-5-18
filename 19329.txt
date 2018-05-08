@@ -1,0 +1,24 @@
+SET: As an approver, I want to see clear and colored status labels on my order approval dashboard;
+         As a purchaser, I want to see clear and colored status labels on my order approval tab from order history page.
+ 
+WIRES:
+The order approval cards in the responsive code has a section called status that needs to be called out more clearly.  The status would be given a colored treatment depending on what the status of that order is.
+Refer to the visual comp
+http://styleguide.rexel.com/_elements/iconography/
+Refer to the styleguide for icons
+ 
+ACCEPTANCE CRITERIA:
+# Show order status in color along with the icons on approver's order approval dashboard
+# Show order status in color along with the icons on purchaser's order approval tab
+# This should apply to reponsives
+# This should be available for both RexelAchat and nonRexelAchat flow
+ 
+NOTE:
+Followup from CLOUD-15883 - order approvals in mobile.  There is also a defect ticket PWS-21795 associated w/ order approval cards to have the title per line be in line with its content versus having the title stacked be on top and stacked on top of its content.
+ 
+Colors to be confirmed:
+* Green = approved
+* Red = rejected
+* Blue = pending approval
+ 
+Will need icons per status as well. 

@@ -1,0 +1,10 @@
+SET: Remove gradient from combo button arrow section of CTA - Responsive from Saved Cart details page
+ 
+ACCEPTANCE CRITERIA:
+# Use the same solid color on both CTA and drop-down arrow section on Saved Cart Details page (Flat, non-gradient primary color of the webshop)
+# (Regression) Purely UI change, no impact on function.
+# This should be applied to all Webshops on responsive (Tablet and Mobile)
+ 
+NOTE:
+The combo button on the "Saved Carts" page uses the primary button color for the CTA and then a gradient for the dropdown with additional options. Each webshop will need to be reviewed to ensure the treatment is consistent.
+This is for the responsive site only.

@@ -1,0 +1,251 @@
+Each uploaded file must have the Manufacturer Part Number and Quantity. These 2 fields are always required and need to be present in the first 10 columns of the file. Hybris will search for these fields in the first 10 columns only before rejecting the file and throwing an error.
+
+ 
+
+For HAGER manufacturing part number is provided in "Référence" and quantity provided in "Quantité produit total".
+
+For Rapsodie manufacturing part number is provided in "Référence" and quantity provided in "Quantité".
+
+For Legrand manufacturing part number is provided in "Référence" and quantity provided in Quantité.
+
+ 
+
+STORY: As a webshop user, I want Hybris to be able to recognize that I am uploading a file from manufacturer software in Fast Order, so that I am asked to select the manufacturer for this file
+
+ 
+
+USER_FLOW:
+
+1. Anonymous user is on webshop
+
+2. User navigates to Fast Order page
+
+ 
+
+OR
+
+1. Trade Account user logs in to webshop
+
+2. User navigates to Fast Order page
+
+ 
+
+ASSUMPTION:
+
+1. No impact to existing csv/txt upload
+
+2. Manufacturer files will support csv only
+
+ 
+
+WIREFRAMES 
+
+https://wje8if.axshare.com/#g=1&p=960_fastorder
+
+PW: rexel2016
+
+ 
+
+ 
+
+ACCEPTANCE CRITERIA:
+
+# User can upload csv file imported from a manufacturer software on Fast Order page, just like he uploads a regular csv
+
+# Hybris must be able to recognize that it is a manufacturer file based on the file's content
+
+# If it is recognized as a manufacturer file, then user will be presented with a list of manufacturers to choose from
+
+# User can only select one manufacturer per file
+
+# It is mandatory to select a manufacturer
+
+# User is displayed 2 friendly messages (actual text to come from translation file):
+
+a. Select your Project (i.e. Project from the header) before proceeding with file upload
+
+b. Only upload file exported from manufacturer's tools
+
+# User can upload file after selecting the manufacturer
+
+# This story applies to Desktop only as file upload functionality does not exist on mobile and tablet
+
+# Create a configuration to enable/disable the feature on webshop such that:
+
+a. If enabled, then Hybris can recognize that it is a manufacturer software file and asked to select manufacturer
+
+b. (Regression) If disabled, then the file will be treated as a regular csv upload and existing validations will apply
+
+c. By default, the feature will be enabled for FR and disabled for other webshops
+
+# Create a configuration to limit the max number of products on a manufacturer file upload
+
+a. This limit only applies to manufacturer file uploads (no impact to regular file upload)
+
+# Place track events behind the following trigger events:
+
+** When user clicks on the Upload button
+
+event: Feature_Event
+
+Feature: Fast Order Upload
+
+Story: File Upload
+
+e_Action: Upload File
+
+Epic: 07 Order Management
+
+User_Type: [Anonymous] or [Logged-in]
+
+** When user selects a manufacturer on the pop-up
+
+event: Feature_Event
+
+Feature: Fast Order Upload
+
+Story: Manufacturer File Upload
+
+e_Action: [Manufacturer Name]
+
+Epic: 07 Order Management
+
+User_Type: [Anonymous] or [Logged-in]
+
+** When user clicks on the Continue Upload button after selecting the manufacturer
+
+event: Feature_Event
+
+Feature: Fast Order Upload
+
+Story: Manufacturer File Upload
+
+e_Action: Upload Manufacturer File
+
+Epic: 07 Order Management
+
+User_Type: [Anonymous] or [Logged-in]
+
+ 
+
+NOTE: User will be able to upload a manufacturer software file only when config is enabled. If he tries to upload a manufacturer software file without enabling config, then the file will be treated as a regular file upload and existing validations will be performed.
+
+ 
+
+*NOTE: Column headers per manufacturer:*
+
+*#Hager*
+
+Manufacturer Name = Hager
+
+Manufacturer Tool = HagerCAD
+
+Column Headers:
+
+- Manufacturer = _Fabricant_
+
+- Manufacturer Part Number = _Référence_
+
+- Product Quantity = _Quantité produit total_
+
+ 
+
+*#Schneider Electric*
+
+Manufacturer Name = Schneider Electric
+
+Manufacturer Tool = Rapsodie
+
+Column Headers:
+
+- Manufacturer = _Constructeur_
+
+- Manufacturer Part Number = _Référence_
+
+- Product Quantity = _Quantité_
+
+ 
+
+*#Legrand*
+
+Manufacturer Name = Legrand
+
+Manufacturer Tool = XLPRO3
+
+Column Headers:
+
+- Manufacturer = _Fabricant_
+
+- Manufacturer Part Number = _Référence_
+
+- Product Quantity = _Quantité_
+
+ 
+
+Tech Notes-
+
+A)
+
+1)On the first page we should check whether the file is of old file format or not.- just checking the 1st row of 1st column
+
+2)if it is a old format file then regression. if No we have to show a popup with manufacturer selection.
+
+3)Acc to the selection from the user we have to compare the uploaded file to the correct template.
+
+ 
+
+B)
+
+Tracking event should be added to the existing upload button. this is not attached to any config.
+
+ 
+
+ 
+
+SEE CONFLUENCE FOR BUSINESS RULES FOR RELEASE 16.3 AND LATER
+
+ 
+
+AC Test
+
+Scenario1: File upload
+
+GIVEN: Logged in trade account user/Anonymous user is accessing the Fast Order page
+
+    AND User has a csv file that he has exported from manufacturer software containing Manufacturer Part Number and Quantity
+
+    AND Configuration is enabled to upload manufacturer software file on fast order page
+
+    AND Max limit for number of products on a manufacturer file is configured
+
+WHEN: the user uploads a file exported from manufacturer software
+
+    AND number of products does not exceed the configured limit
+
+THEN: In Fast Order page, user will be prompted to select a manufacturer for this file
+
+    AND User is displayed friendly messages to select the project and upload file exported from a manufacturer tool
+
+    AND User should be able to select only one Manufacturer for the file he wants to upload
+
+    AND User can proceed only after selecting a manufacturer
+
+---------------------------------------------------------------------------------
+
+Scenario2: Analytics Tracking on file upload
+
+GIVEN: Logged in trade account user/Anonymous user is accessing the Fast Order page
+
+    AND Configuration is  enabled to upload manufacturer software file on fast order page
+
+WHEN: User clicks on the Upload button
+
+THEN: Analytics should get tracked for this action
+
+WHEN: User clicks on a manufacturer on the pop-up
+
+THEN: Analytics should get tracked for this action
+
+WHEN: User clicks on the Upload File button after selecting the manufacturer
+
+THEN: Analytics should get tracked for this action

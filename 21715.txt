@@ -1,0 +1,16 @@
+SET: As a user on responsive devices, I would like to see a bigger 'Add' combo button on grid view, so that I can easily have my actions
+ 
+UI NOTES:
+* The size of the "Add" Combo button should be the full width of the grid
+* Button height is 33px
+* Leave 9px of padding around the button on all sides
+* For mobile and tablet:
+** Button height should be increased to 39px to increase affordance for finger touch
+ 
+ 
+Refer to the visual comp
+ 
+ACCEPTANCE CRITERIA:
+# Resize the 'Add' COMBO button on PLP grid view as per the UI note.
+# (Regression) Purely UI change on the COMBO button ONLY, no impact on function or any other existing display.
+# It should be applied to all webshops on both Mobile and Tablet.

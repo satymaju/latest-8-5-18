@@ -1,0 +1,28 @@
+SET: As a user, I want to also see ‘Mobile Phone number’ field on the registration flow using an existing account, so that I can provide all my contact info.
+ 
+ACCEPTANCE CRITERIA:
+# 'Mobile Phone Number' field should be available on registration flow using an existing account
+# Below configuration should be available to define 'Mobile Phone Number' field at webshop level
+## visible or invisible
+## mandatory or optional
+## length
+## By default, it should be visible and mandatory for Sweden, but invisible and optional for the others.
+# Mobile number entered at registration (existing or non-existing account) should be displayed on the Edit User page for that user in User Management
+# Mobile number entered at registration (existing or non-existing account) should be displayed on the My profile page for that user
+# Phone number validation should be also applied to the new contact field, if applicable (NOTE: using the existing logic: Webshop using phone number validation should keep it also for this addition; Webshop not using phone number validation should not use for this addition either.)
+# This should be applied to all breakpoints.
+ 
+ 
+NOTE:
+1)        Registration flow with existing account
+Add Mobile Number + Config (hide/visible) + config (mandatory/optional) – should be mandatory by default for Sweden
+2)        Registration flow without existing account (Web/ New Trade_Manual/ New Trade_Auto/ Cash)
+Include config (mandatory/optional) should be mandatory by default for Sweden
+3)        User mgnt page (user creation via company admin)
+This is already mandatory, not sure if there’s a config for this
+4)        For all touch points, data must be synchronised for the same user
+Mobile number entered at registration (existing or non-existing account) should be displayed on the Edit User page for that user in User Management
+ 
+OPEN POINTS (TECH):
+How about the existing phone number data? if the mapping is already done to sync the phone number between registration (existing or ATAO) and user mgmt? ([~harish.pai-ext@rexel.com])
+ 

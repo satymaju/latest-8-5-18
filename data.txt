@@ -1,0 +1,46 @@
+https://jira.rexel.com/browse/CLOUD-22291 
+
+FR03MC45 Rexel Webshop 18 
+
+UPN: viraj.shah-ext@rexel.com
+PWD: @5Zi@e6T
+
+
+
+
+uat :-
+
+rha.approver@rexel.fr
+
+12345678 
+ rha.purchaser@rexel.fr / 12345678 
+
+
+
+
+2096221- anupama
+
+
+Jira:-
+
+https://jira.rexel.com/browse/CLOUD-22291 
+
+
+
+
+config.webservice.customerstockandprice.usemock
+config.webservice.addorder.usemock 
+config.webservice.orderprice.usemock 
+uki.register.newAccount.streetNameBillingAddress.mand=false 
+
+address.streetName.mandatory=false
+address.streetName.visible=false
+address.streetNumber.visible=false
+address.streetNumber.mandatory=false
+uki.address.line1.mandatory=true
+uki.address.line1.visible=true 
+
+Tibco:-
+
+http://10.155.51.16:8080/RexelTibcoMonitoringTool/monitoringToolController/listOfAllAuditLogUsingAdvanceSearch.html?srFromDate=&srToDate=&srCntry=UK&srApplication=UKI&srInterface=WSSync&srVersion=5.x&srTransaction=addOrder&srStatus=&srErrorCategory=&srAttributesName=&srAttributesValue=&Search=Search 
+

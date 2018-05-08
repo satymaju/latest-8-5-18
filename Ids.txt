@@ -1,0 +1,16 @@
+non achat:-
+
+
+FRX-
+Purchaser – viraj_purchaser/12345678
+Approver – viraj_approver/12345678
+ 
+GYW-
+Username – purchaser01/12345678
+Password – approver01/12345678
+
+Acaht:-
+
+Frx:-
+approver06
+purchaser06

@@ -1,0 +1,11 @@
+SET: As a user searching for products, if I click on a result I would like to consistently go back to the search results page that I was on from the PDP page.
+ 
+ACCEPTANCE CRITERIA:
+1) Remove the "back to search results" link on the PDP
+2) This link should be removed from all breakpoints
+ 
+NOTE:
+https://jira.rexel.com/issues/?jql=%22Rally%20SF%20ID%22%20%3D%20SF906
+since we have launched the pagination stories in SF906 which launched in 17.4 we no longer need to have this link in the PDP. This link also behaves incorrectly if a user browses away from the PDP.
+ 
+With this story, user can use either breadcrumb or browser 'go back' option to navigate back

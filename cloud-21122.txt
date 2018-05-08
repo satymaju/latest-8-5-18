@@ -1,0 +1,168 @@
+
+> DESCRIPTION --Bulk ordering> BIZ BENEFIT --Panel builders who have a web account : 31 M euros turnover  in branches in 2017. BUT only 3,7 M euro turnover done online. > CUSTOMER BENEFIT --Very expected by panel builders accross all countries - fast order cannot handle more than 100 lines today.> ORIG COMMENTS -- - Xlarge> ORG EST –90
+
+ 
+
+STORY: As a webshop user, I want Hybris to be able to identify the manufacturer when I upload a file from Manufacturer software in Fast Order, so that products are retrieved from the appropriate manufacturer
+
+ 
+
+USER_FLOW:
+
+1. Anonymous user is on webshop
+
+2. User navigates to Fast Order page
+
+3. User uploads a manufacturer file and Hybris recognizes it as such
+
+4. User selects a manufacturer and uploads manufacturer file
+
+ 
+
+OR
+
+1. Trade Account user logs in to webshop
+
+2. User navigates to Fast Order page
+
+3. User uploads a manufacturer file and Hybris recognizes it as such
+
+4. User selects a manufacturer and uploads manufacturer file
+
+ 
+
+ASSUMPTION:
+
+1. No impact to existing csv/txt upload
+
+2. Manufacturer files will support csv only
+
+ 
+
+WIREFRAMES 
+
+https://wje8if.axshare.com/#g=1&p=960_fastorder
+
+PW: rexel2016
+
+ 
+
+ACCEPTANCE CRITERIA:
+
+(NOTE: This story will work only if the config. created in CLOUD-18493 is enabled)
+
+# User can upload a file from the manufacturer software in any structure (i.e. columns/fields may vary from one file to another)
+
+# Manufacturer Part Number/Product Reference, Quantity are mandatory fields
+
+NOTE: Each uploaded file must have the Manufacturer Part Number and Quantity. These 2 fields are always required and need to be present in the first 10 columns of the file. Hybris will search for these fields in the first 10 columns only before rejecting the file and throwing an error
+
+# User must be able to upload the file after selecting the manufacturer
+
+a. Uploaded file must match with the template of the manufacturer which is selected by the user
+
+b. If the uploaded file does not match with the template supported by the selected manufacturer, then user will be displayed error message to upload the correct file or select the correct manufacturer or use our standard template (actual text will come from translation file)
+
+c. If the uploaded file matches with the template of selected manufacturer, then upload products from only that manufacturer's catalog in Fast Order
+
+NOTE: If same product reference is found in more than 1 manufacturers, then product from the appropriate manufacturer based on user's selection will be added
+
+d. If no. of products on the file exceeds the configured max limit, then upload the first 'n' products and discard remaining products (where n = configurable max number of rows in the file)
+
+e. Display error message informing the user that some of the products from your file were discarded
+
+# (Regression) Once products are added in Fast Order, automatically update the Product Name for Anonymous Users
+
+# (Regression) Once products are added in Fast Order, automatically update the Product Name, Price, and Stock for Trade Account Users
+
+# (Regression) Product prices displayed must be based on the project selected from the header
+
+# This applies to Desktop only as file upload functionality does not exist on mobile and tablet currently.
+
+ 
+
+NOTE: User will be able to upload a manufacturer software file only when config is enabled. If he tries to upload a manufacturer software file without enabling config, then the file will be treated as a regular file upload and existing validations will be performed.
+
+ 
+
+*NOTE: Column headers per manufacturer:*
+
+*#Hager*
+
+Manufacturer Name = Hager
+
+Manufacturer Tool = HagerCAD
+
+Column Headers:
+
+- Manufacturer Part Number = _Référence_
+
+- Product Quantity = _Quantité produit total_
+
+Read file from Row Number: Column headers on row #4 and products from row #5
+
+ 
+
+*#Schneider Electric*
+
+Manufacturer Name = Schneider Electric
+
+Manufacturer Tool = Rapsodie
+
+Column Headers:
+
+- Manufacturer Part Number = _Référence_
+
+- Product Quantity = _Quantité_
+
+Read file from Row Number: Column headers on row #3 and products from row #4
+
+ 
+
+*#Legrand*
+
+Manufacturer Name = Legrand
+
+Manufacturer Tool = XLPRO3
+
+Column Headers:
+
+- Manufacturer Part Number = _Référence_
+
+- Product Quantity = _Quantité_
+
+Read file from Row Number: Column headers on row #1 and products from row #2
+
+ 
+
+SEE CONFLUENCE FOR BUSINESS RULES FOR RELEASE 16.3 AND LATER
+
+ 
+
+ 
+
+AC Test
+
+Scenario1: Successful file upload
+
+GIVEN: Logged in trade account user/Anonymous user is accessing the Fast Order page
+
+    AND User has a csv file that he has exported from manufacturer software containing Manufacturer Part Number and Quantity
+
+    AND Configuration is enabled to upload manufacturer software file on fast order page
+
+WHEN: User uploads a manufacturer file after selecting a manufacturer
+
+    AND The uploaded file matches with the selected manufacturer's file structure
+
+THEN: Products from that manufacturer's catalog are added to Fast Order
+
+---------------------------------------------------------------------------------
+
+Scenario2: Failure on file upload
+
+GIVEN: On Fast Order page, user is uploading a manufacturer file and has selected a manufacturer and uploaded the file from manufacturer software
+
+WHEN: The uploaded file DOES NOT match the selected manufacturer's file structure
+
+THEN: User is shown an error message to upload the correct file or select the correct manufacturer
